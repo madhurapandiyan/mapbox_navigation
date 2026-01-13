@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mapbox_navigation/main.dart';
 import 'package:mapbox_navigation/models/place_suggestion_model.dart';
 
 class GooglePlaceSearch extends StatefulWidget {
@@ -18,7 +19,7 @@ class _GooglePlaceSearchState extends State<GooglePlaceSearch> {
     try {
       isSearching.value = true;
 
-      var key = "AIzaSyAlTKK3yAE2kTZOaKmkSurHn9XCwbK-L58";
+      var key = AppEnv.googlePlaceApiKey;
       var result = await client.post(
         "/v1/places:autocomplete",
         queryParameters: {"key": key},
@@ -68,7 +69,7 @@ class _GooglePlaceSearchState extends State<GooglePlaceSearch> {
 
   getPlaceDetail() async {
     try {
-      var key = "AIzaSyAlTKK3yAE2kTZOaKmkSurHn9XCwbK-L58";
+      var key = AppEnv.googlePlaceApiKey;
       var result = await client.get(
         "/v1/places/${selectedPrediction!.placeId}",
         options: Options(headers: {"X-Goog-FieldMask": "*"}),

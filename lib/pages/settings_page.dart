@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapbox_navigation/main.dart';
 import 'package:mapbox_navigation/service/routing_service_interface.dart';
 import 'package:mapbox_navigation/service/routing_settings_service.dart';
 
@@ -24,9 +25,9 @@ class _RoutingSettingsPageState extends State<RoutingSettingsPage> {
     _loadSettings();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _googleApiKeyController.text = 'AIzaSyBmDivc_INAxU5uELl0xlxrbpnnk5hZ0EE';
+      _googleApiKeyController.text = AppEnv.googleApiKey;
       _mapboxTokenController.text =
-          'pk.eyJ1Ijoic3JlZXJhbS1nYW5lc2FuIiwiYSI6ImNtOGJodWpjNTB0OTgyanI0Mm9sNGFqc28ifQ.vGIE0WuI1k4jua890aMCTw';
+          AppEnv.mapBoxToken;
       _saveGoogleApiKey(_googleApiKeyController.text);
       _saveMapboxAccessToken(_mapboxTokenController.text);
     });
